@@ -8,4 +8,3 @@
 # .tfvars files
 *.tfvars
 .terraform
-.github
