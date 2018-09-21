@@ -2,7 +2,7 @@
 ###### QUICK EDIT'S HERE  ######
 ################################
 
-###### CLUSTER OPTIONS  ######
+###### PROJECT OPTIONS  ######
 
 # Customize the Serverless App Name
 variable "app_name" {

@@ -27,7 +27,7 @@ resource "aws_codepipeline" "pipeline" {
   }
 
   stage {
-    name = "Build"
+    name = "Build-and-Deploy"
 
     action {
       name             = "Build"
@@ -36,7 +36,6 @@ resource "aws_codepipeline" "pipeline" {
       provider         = "CodeBuild"
       version          = "1"
       input_artifacts  = ["source"]
-      output_artifacts = ["imagedefinitions"]
 
       configuration {
         ProjectName = "${var.app_name}-codebuild"
@@ -44,22 +43,19 @@ resource "aws_codepipeline" "pipeline" {
     }
   }
 
-  stage {
-    name = "Production"
+  // stage {
+  //   name = "Production"
 
-    action {
-      name            = "Deploy"
-      category        = "Deploy"
-      owner           = "AWS"
-      provider        = "ECS"
-      input_artifacts = ["imagedefinitions"]
-      version         = "1"
+  //   action {
+  //     name            = "Deploy"
+  //     category        = "Deploy"
+  //     owner           = "AWS"
+  //     input_artifacts = ["imagedefinitions"]
+  //     version         = "1"
 
-      configuration {
-        ClusterName = "${var.app_name}"
-        ServiceName = "${var.app_service_name}"
-        FileName    = "imagedefinitions.json"
-      }
-    }
-  }
+  //     configuration {
+  //       ProjectName = "${var.app_name}"
+  //     }
+  //   }
+  // }
 }
