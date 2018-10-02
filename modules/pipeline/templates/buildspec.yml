@@ -16,4 +16,4 @@ phases:
       - npm run test # Put your test command code in here
   post_build:
     commands:
-      - npx serverless deploy -v
+      - serverless deploy -v
