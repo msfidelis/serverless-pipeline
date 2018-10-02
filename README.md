@@ -47,6 +47,30 @@ variable "git_repository_branch" {
 
 This demo build, test and deploy a simple Node.JS FaaS. Customize your build steps on `modules/pipeline/templates/buildspec.yml` file.
 
+### Example
+
+```yml
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Installing Node 8
+      - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+      - apt-get install -y nodejs  
+      - echo Entered the pre_build phase...
+      - npm install -g serverless
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Starting Unit Tests
+      - npm run test # Put your test command code in here
+  post_build:
+    commands:
+      - serverless deploy -v
+```
+
 
 ## How to Deploy
 
