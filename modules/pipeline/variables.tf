@@ -17,3 +17,7 @@ variable "git_repository_branch" {
 variable "region" {
   description = "The region to use"
 }
+
+variable "account_id" {
+  description = "Account ID"
+}
